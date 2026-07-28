@@ -1634,11 +1634,14 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideoCFRD = (function 
    */
   InteractiveVideoEditor.prototype.appendTo = function ($wrapper) {
     var self = this;
-    // Added to support older versions of core. Needed when using IV in CP.
-    var $libwrap = $wrapper.parent().parent();
-    if ($libwrap.hasClass('libwrap')) {
-      $libwrap.addClass('h5p-interactivevideo-editor');
+    // Lumi/core puts machineName-derived class on .h5peditor (e.g.
+    // h5p-interactivevideocfrd-editor), not always on .libwrap. Upstream CSS
+    // targets h5p-interactivevideo-editor — add it on the real editor root.
+    var $editorRoot = $wrapper.closest('.h5p-interactivevideocfrd-editor, .libwrap');
+    if ($editorRoot.length) {
+      $editorRoot.addClass('h5p-interactivevideo-editor');
     }
+    var $libwrap = $editorRoot;
 
     this.$item = $(this.createHtml()).appendTo($wrapper);
     this.$editor = this.$item.children('.h5peditor-interactions');
