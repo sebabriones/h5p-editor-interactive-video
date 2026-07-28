@@ -1,12 +1,12 @@
-H5PEditor.InteractiveVideo.GuidedTours = (function () {
+H5PEditor.InteractiveVideoCFRD.GuidedTours = (function () {
 
   // Shorthand for translate function:
-  var t = H5PEditor.InteractiveVideo.t;
+  var t = H5PEditor.InteractiveVideoCFRD.t;
 
   var currentTourId;
 
   /**
-   * @class H5PEditor.InteractiveVideo.GuidedTours
+   * @class H5PEditor.InteractiveVideoCFRD.GuidedTours
    */
   function GuidedTours() {}
 

@@ -1,12 +1,12 @@
 /*global H5PEditor, H5P, H5PIntegration*/
-H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) {
+H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideoCFRD = (function ($) {
 
   var counter = 0;
 
   /**
    * Initialize interactive video editor.
    *
-   * @class H5PEditor.InteractiveVideo
+   * @class H5PEditor.InteractiveVideoCFRD
    * @param {Object} parent
    * @param {Object} field
    * @param {Object} params
@@ -86,7 +86,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
     // When wizard changes step
     parent.on('stepChanged', function (event) {
       that.currentTabIndex = event.data.id;
-      that.startGuidedTour(H5PEditor.InteractiveVideo.GuidedTours.isOpen());
+      that.startGuidedTour(H5PEditor.InteractiveVideoCFRD.GuidedTours.isOpen());
     });
 
     // Update paste button
@@ -134,7 +134,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
    * @private
    * @type {string}
    */
-  InteractiveVideoEditor.clipboardKey = 'H5PEditor.InteractiveVideo';
+  InteractiveVideoEditor.clipboardKey = 'H5PEditor.InteractiveVideoCFRD';
   /**
    * Find a field, then run the callback.
    *
@@ -286,7 +286,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
     var that = this;
 
     // Create new player.
-    this.IV = new H5P.InteractiveVideo({
+    this.IV = new H5P.InteractiveVideoCFRD({
       interactiveVideo: {
         video: {
           files: this.video,
@@ -502,7 +502,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
 
     this.params.endscreens.splice(i, 0, {
       time: time,
-      label: H5P.InteractiveVideo.humanizeTime(time) + ' ' + t('endscreen')
+      label: H5P.InteractiveVideoCFRD.humanizeTime(time) + ' ' + t('endscreen')
     });
 
     var $endscreen = this.IV.addEndscreen(i, tenth);
@@ -781,7 +781,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
   /**
    * Create form for interaction.
    *
-   * @param {H5P.InteractiveVideoInteraction} interaction
+   * @param {H5P.InteractiveVideoCFRDInteraction} interaction
    * @param {Object} parameters
    */
   InteractiveVideoEditor.prototype.createInteractionForm = function (interaction, parameters) {
@@ -874,7 +874,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
   /**
    * Process interaction.
    *
-   * @param {H5P.InteractiveVideoInteraction} interaction
+   * @param {H5P.InteractiveVideoCFRDInteraction} interaction
    * @param {Object} parameters
    */
   InteractiveVideoEditor.prototype.processInteraction = function (interaction, parameters) {
@@ -947,7 +947,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
       }).indexOf(interaction.getLibraryName()) >= 0;
 
     if (eligibleForRequireCompletion) {
-      new H5PEditor.InteractiveVideo.RequireCompletion(self, interaction);
+      new H5PEditor.InteractiveVideoCFRD.RequireCompletion(self, interaction);
     }
 
     interaction.on('display', function (event) {
@@ -1184,7 +1184,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
 
   /**
    * Add interaction to drag n bar and initialize listeners.
-   * @param {H5P.InteractiveVideoInteraction} interaction Interaction
+   * @param {H5P.InteractiveVideoCFRDInteraction} interaction Interaction
    * @param {H5P.jQuery} $interaction Interaction element
    * @param {Object} [options] Options for new dnb element
    */
@@ -1273,7 +1273,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
   /**
    * Called when rendering a new interaction.
    *
-   * @param {H5P.InteractiveVideoInteraction} interaction
+   * @param {H5P.InteractiveVideoCFRDInteraction} interaction
    * @param {H5P.jQuery} $interaction
    */
   InteractiveVideoEditor.prototype.newInteraction = function (interaction, $interaction) {
@@ -1622,7 +1622,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
    */
   InteractiveVideoEditor.prototype.startGuidedTour = function (force) {
     if (InteractiveVideoEditor.showGuidedTour) {
-      H5PEditor.InteractiveVideo.GuidedTours.start(this.currentTabIndex, force || false, t);
+      H5PEditor.InteractiveVideoCFRD.GuidedTours.start(this.currentTabIndex, force || false, t);
       // Make sure the guided tour stays behind other important popups
     }
   };
@@ -1746,7 +1746,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
     if (this.dnb !== undefined) {
       this.dnb.remove();
     }
-    H5PEditor.InteractiveVideo.GuidedTours.remove();
+    H5PEditor.InteractiveVideoCFRD.GuidedTours.remove();
     this.$item.remove();
   };
 
@@ -1773,7 +1773,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function ($) 
    * @returns {string}
    */
   var t = InteractiveVideoEditor.t = function (key, vars) {
-    return H5PEditor.t('H5PEditor.InteractiveVideo', key, vars);
+    return H5PEditor.t('H5PEditor.InteractiveVideoCFRD', key, vars);
   };
 
   /**

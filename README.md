@@ -1,16 +1,17 @@
-H5P Editor Interactive Video
-==========
+# H5P Interactive Video Editor (CFRD) 1.0
 
-Makes it easier to create interactive videos.
+Fork CFRD de **H5PEditor.InteractiveVideo** (upstream 1.25.x, `coreApi` 1.27).
 
-## License
+| Campo | Valor |
+|-------|-------|
+| `machineName` | `H5PEditor.InteractiveVideoCFRD` |
+| Versión | **1.0.0** |
+| Player asociado | `H5P.InteractiveVideoCFRD` 1.0 (`../h5p-interactive-video-cfrd-1.0/`) |
+| Widget en semantics | `interactiveVideo` (clave sin cambio) |
+| Rama git | `editor-interactive-video-cfrd-1.0.0` |
 
-(The MIT License)
+Se declara desde el player en `editorDependencies`. No requiere build (scripts en `Scripts/`).
 
-Copyright (c) 2012-2014 Joubel AS
- 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+## Licencia
+
+MIT — ver `library.json`.

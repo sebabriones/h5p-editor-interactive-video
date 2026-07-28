@@ -1,20 +1,20 @@
 /**
- * @class H5PEditor.InteractiveVideo.RequireCompletion
+ * @class H5PEditor.InteractiveVideoCFRD.RequireCompletion
  */
-H5PEditor.InteractiveVideo.RequireCompletion = (function () {
+H5PEditor.InteractiveVideoCFRD.RequireCompletion = (function () {
 
   /**
    * Handles the require completion option and the way it affects the interaction
    * and other interactions.
    *
-   * @param {H5PEditor.InteractiveVideo} IVEditor
+   * @param {H5PEditor.InteractiveVideoCFRD} IVEditor
    * @param {Object} interaction
    * @constructor
    */
   function RequireCompletion(IVEditor, interaction) {
 
     // Shorthand for translating texts
-    var t = H5PEditor.InteractiveVideo.t;
+    var t = H5PEditor.InteractiveVideoCFRD.t;
 
     // Determines if retry is enabled for this interaction
     var enableRetry;
