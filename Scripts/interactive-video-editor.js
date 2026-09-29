@@ -898,6 +898,70 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideoCFRD = (function 
       interactionFields.pause.$item.addClass('h5peditor-interaction-pause');
     }
 
+    if (interactionFields.pauseDelay && interactionFields.pauseDelay.$item &&
+        interactionFields.pause && interactionFields.pause.$input) {
+      var syncPauseDelayField = function () {
+        var enabled = !!interactionFields.pause.$input[0].checked;
+        var from = parameters.duration ? Number(parameters.duration.from) : 0;
+        var to = parameters.duration ? Number(parameters.duration.to) : NaN;
+        var maxDelay = (isFinite(from) && isFinite(to) && to >= from) ? (to - from) : 600;
+        var value;
+
+        maxDelay = Math.round(maxDelay * 10) / 10;
+
+        interactionFields.pauseDelay.$item.toggleClass('hide', !enabled);
+        if (!interactionFields.pauseDelay.$input) {
+          return;
+        }
+        interactionFields.pauseDelay.$input.attr('step', 'any');
+        if (!enabled) {
+          return;
+        }
+
+        value = Number(interactionFields.pauseDelay.$input.val());
+        if (!isFinite(value) || value < 0) {
+          value = 0;
+        }
+        value = Math.round(value * 10) / 10;
+        if (value > maxDelay) {
+          interactionFields.pauseDelay.$input.val(maxDelay).trigger('change');
+        }
+      };
+
+      interactionFields.pause.$input.on('change', syncPauseDelayField);
+      if (interactionFields.pauseDelay.$input) {
+        interactionFields.pauseDelay.$input.on('change', syncPauseDelayField);
+      }
+      syncPauseDelayField();
+    }
+
+    var refreshVisibleMarker = function () {
+      var time;
+
+      if (!interaction.isVisible()) {
+        return;
+      }
+
+      time = (self.IV && self.IV.video && self.IV.video.getCurrentTime) ? self.IV.video.getCurrentTime() : 0;
+      interaction.remove();
+      interaction.reCreate();
+      interaction.fit = true;
+      interaction.toggle(time, false);
+    };
+
+    [interactionFields.markerAnimation, interactionFields.animationDuration, interactionFields.animationEasing].forEach(function (field) {
+      var $control;
+
+      if (!field) {
+        return;
+      }
+
+      $control = field.$select || field.$input;
+      if ($control) {
+        $control.on('change', refreshVisibleMarker);
+      }
+    });
+
     if (interactionFields.label.$item) {
       interactionFields.label.$item.addClass('h5peditor-interaction-label');
 
